@@ -20,13 +20,13 @@ int* FindMinest_K_Element(
 	{
 		if(prek<k)
 		{
-			begin=prek;
+			begin=prek+1;
 		}
 		else
 		{
-			end=prek;
+			end=prek-1;
 		}
-		prek=QuickSortCore(data,begin,prek);
+		prek=QuickSortCore(data,begin,end);
 	}	
 	int *outPut=new int [k];
 	for(int i=0;i<k;i++)
@@ -43,7 +43,7 @@ int QuickSortCore( int * data,int begin,int end)
 	j=end;	
 	while(i<j)
 	{
-		while(i<j&&key>data[j])
+		while(i<j&&key<=data[j])
 		{
 			j--;	
 		}
@@ -53,7 +53,7 @@ int QuickSortCore( int * data,int begin,int end)
 			i++;	
 		}
 
-		while(i<j&&key<=data[i])
+		while(i<j&&key>data[i])
 		{
 			i++;
 		}
@@ -69,7 +69,7 @@ int QuickSortCore( int * data,int begin,int end)
 }
 void TestFindK()
 {
-	int data[]={1,2,3,4,5,6,7,9,0};
+	int data[]={1,2,3,4,5,6,7,8,9,0};
 	int k=3;
 	int *res=new int[3];
 	res=FindMinest_K_Element(data,10,3);
@@ -77,5 +77,10 @@ void TestFindK()
 	{
 		std::cout<<res[i]<<'\t';
 	}
-
+	int data2[]={2,4,5,1,2,3,0,0,6,7};
+	res=FindMinest_K_Element(data2,10,3);
+		for(int i=0;i<k;i++)
+	{
+		std::cout<<res[i]<<'\t';
+	}
 }
